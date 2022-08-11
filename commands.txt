@@ -1,0 +1,66 @@
+Create Backend
+
+=> virtualenv myenv
+=> source myenv/bin/activate
+=> pip install django
+=> django-admin startproject backend
+
+
+Start Backend
+
+=> cd backend
+=> python manage.py runserver
+
+Start App
+=> cd backend
+=> python manage.py startapp base
+
+Configure base app in backend/settings.py
+-> Append 'base.apps.BaseConfig' in INSTALLED_APPS list, BaseConfig comes from base/apps.py class BaseConfig.
+-> Now our project knows about our base app
+
+Populate base/views.py with getRoute
+
+Create base/urls.py
+
+Populate base/urls.py with urlpattern created for views created in views.py
+
+Update backend/urls.py to include base urls
+
+Install Django Rest Framework
+=> pip install djangorestframework
+-> Append it into INSTALLED_APPS
+
+Install CORS headers
+=> pip install django-cors-headers
+Update backend/settings.py INSTALLED_APPS and MIDDLEWARE
+
+Add proxy in package.json "proxy": "http://127.0.0.1:8000"
+
+Migrate database
+=> python manage.py migrate
+
+Create database table in base/models.py
+
+Make migrations
+=> python manage.py makemigrations
+Apply migrations
+=> python manage.py migrate
+Register it with admin panel in base/admin.py
+
+Install Redux
+=> npm i redux react-redux redux-thunk redux-devtools-extension
+
+
+
+Simple JWT
+=> pip install djangorestframework-simplejwt
+Add following code snippet above middleware in settings.py
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+}
+
+
+
