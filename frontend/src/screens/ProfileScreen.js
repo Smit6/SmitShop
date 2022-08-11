@@ -43,8 +43,7 @@ function ProfileScreen() {
         pathname: `/login`
       })
     } else {
-      console.log('came in else')
-      if (!user || !user.name || success) {
+      if (!user || !user.name || success || userInfo._id !== user._id) {
         dispatch({ type: USER_UPDATE_PROFILE_RESET })
         dispatch(getUserDetails('profile'))
         dispatch(listMyOrders())

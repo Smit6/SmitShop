@@ -18,7 +18,6 @@ import {
   USER_UPDATE_PROFILE_REQUEST,
   USER_UPDATE_PROFILE_SUCCESS,
   USER_UPDATE_PROFILE_FAILURE,
-  USER_UPDATE_PROFILE_RESET,
 
   USER_LIST_REQUEST,
   USER_LIST_SUCCESS,
@@ -28,6 +27,10 @@ import {
   USER_DELETE_REQUEST,
   USER_DELETE_SUCCESS,
   USER_DELETE_FAILURE,
+
+  USER_UPDATE_REQUEST,
+  USER_UPDATE_SUCCESS,
+  USER_UPDATE_FAILURE,
 } from "../constants/userConstants";
 
 import { ORDER_LIST_MY_RESET } from "../constants/orderConstants";
@@ -237,6 +240,40 @@ export const deleteUser = (id) => async (dispatch, getState) => {
   } catch (error) {
     dispatch({
       type: USER_DELETE_FAILURE,
+      payload: error.response && error.response.data.detail
+                ? error.response.data.detail
+                : error.message
+    });
+  }
+}
+
+export const updateUser = (user) => async (dispatch, getState) => {
+  try {
+    dispatch({ type: USER_UPDATE_REQUEST });
+
+    const {
+      userLogin: { userInfo },
+    } = getState();
+
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${userInfo.token}`,
+      }
+    }
+    
+    const { data } = await axios
+      .put(
+        `/api/users/update/${user._id}/`,
+        user,
+        config
+      )
+    
+    dispatch({ type: USER_UPDATE_SUCCESS });
+    dispatch({ type: USER_DETAILS_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({
+      type: USER_UPDATE_FAILURE,
       payload: error.response && error.response.data.detail
                 ? error.response.data.detail
                 : error.message
