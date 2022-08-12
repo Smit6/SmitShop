@@ -63,4 +63,12 @@ REST_FRAMEWORK = {
 }
 
 
+Get all django files or react file and turn into static asset
+==> npm run build
+Now entire react project sits in backend/frontend/build/index.html
 
+Now point django project to index.html
+
+
+AFTER DEPLOYMENT
+- For any change in frontend, we need to run `npm run build`
