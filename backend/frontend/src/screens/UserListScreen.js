@@ -53,13 +53,15 @@ function UserListScreen() {
           : (
             <Table striped bordered hover responsive className='table-sm'>
               <thead>
-                <td>ID</td>
-                <td>NAME</td>
-                <td>EMAIL</td>
-                <td>ADMIN</td>
-                <td></td>
+                <tr>
+                  <th>ID</th>
+                  <th>NAME</th>
+                  <th>EMAIL</th>
+                  <th>ADMIN</th>
+                  <th></th>
+                </tr>
               </thead>
-              <body>
+              <tbody>
                 {users.map(user => (
                   <tr key={user.id}>
                     <td>{user.id}</td>
@@ -92,7 +94,7 @@ function UserListScreen() {
                     </td>
                   </tr>
                 ))}
-              </body>
+              </tbody>
             </Table>
           )
       }

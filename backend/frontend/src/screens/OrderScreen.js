@@ -44,7 +44,7 @@ function OrderScreen() {
   const addPayPalScript = () => {
     const script = document.createElement('script')
     script.type = 'text/javascript'
-    script.src = 'https://www.paypal.com/sdk/js?client-id=AYoq11Pvxi8_KYg8xBEHJQL5nLKxjO9ViA4GoT3ko-sleZmTvbQkXo3GVFpoLMVSDqYUup6z63wkVhYm'
+    script.src = 'https://www.paypal.com/sdk/js?client-id=YOUR_CLIENT_ID' // enter you client id from paypal
     script.async = true
     script.onload = () => {
       setSdkReady(true)

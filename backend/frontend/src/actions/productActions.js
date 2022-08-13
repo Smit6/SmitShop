@@ -172,13 +172,14 @@ export const createProductReview = (productId, review) => async (dispatch, getSt
         Authorization: `Bearer ${userInfo.token}`,
       }
     }
-    
+    console.log('productId', productId)
     const { data } = await axios
       .post(
         `/api/products/${productId}/review/`,
         review,
         config
       )
+    console.log('data:', data)
 
     dispatch({ type: PRODUCT_CREATE_REVIEW_SUCCESS, payload: data });
   } catch (error) {
